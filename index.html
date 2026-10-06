@@ -181,7 +181,23 @@ a{color:#FFD23F}a:hover{color:#FFE27A}
   if (!band || !title) return;
   title.textContent = 'You found a rat!';
   band.parentNode.insertBefore(band, band.parentNode.firstChild);
-  // Later (find-count stats): tell the counter that sticker ratId was tapped.
+
+  // Count the tap (anonymously: only "this rat's sticker was tapped" is
+  // sent). Once per rat per phone, remembered in this browser, so reloading
+  // the page doesn't count again. If anything here fails the page still works.
+  var COUNTER = 'https://ratcatcher-counter.steamrivet.workers.dev';
+  var key = 'ratcatcher-tapped-' + ratId.toLowerCase();
+  try {
+    if (window.localStorage.getItem(key)) return;
+  } catch (e) { /* no storage (private mode): count anyway */ }
+  try {
+    // Sent as plain text so the browser needs no extra permission round trip.
+    fetch(COUNTER + '/tap', { method: 'POST', body: JSON.stringify({ ratId: ratId }), keepalive: true })
+      .then(function (response) {
+        if (response.ok) { try { window.localStorage.setItem(key, '1'); } catch (e) {} }
+      })
+      .catch(function () {});
+  } catch (e) {}
 })();
 </script>
 </body>
