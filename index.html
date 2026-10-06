@@ -24,7 +24,8 @@ a{color:#FFD23F}a:hover{color:#FFE27A}
   (see the script at the bottom).
 
   Optional pictures: upload files with exactly these names next to this file
-  and they appear on their own; without them the page simply leaves them out.
+  and they appear on their own. Until then the phone shows a plain stand-in
+  screen and the round sticker is plain yellow.
     icon.png        the app icon (square)
     screenshot.png  a tall screenshot of the app, shown inside the phone
     rat.png         a square rat drawing, shown as a round sticker
@@ -58,11 +59,20 @@ a{color:#FFD23F}a:hover{color:#FFE27A}
 <p style="margin: 0; font-size: 15px; color: #B4B9C1">Installs as an APK from GitHub Releases. Needs an Android phone with NFC.</p>
 </div>
 
-<div id="phone" style="flex: 1 1 300px; display: flex; justify-content: center; position: relative">
+<div style="flex: 1 1 300px; display: flex; justify-content: center; position: relative">
 <div style="position: relative; width: 300px; height: 620px; box-sizing: border-box; border: 10px solid #000000; border-radius: 40px; background: #23262B; outline: 2px solid #3A3F47; overflow: hidden">
-<img src="screenshot.png" alt="The Ratcatcher app" style="width: 100%; height: 100%; object-fit: cover; display: block" onerror="document.getElementById('phone').remove()">
+<!-- Shown until screenshot.png is uploaded: a plain stand-in screen. -->
+<div style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; padding: 24px; text-align: center">
+<div style="width: 96px; height: 96px; border-radius: 50%; background: #FFD23F; border: 6px solid #F4F2EC; transform: rotate(-8deg)"></div>
+<div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 26px">Ratcatcher</div>
+<div style="font-size: 15px; color: #B4B9C1">Tap a sticker to start your collection.</div>
 </div>
-<img src="rat.png" alt="" style="position: absolute; right: 4%; bottom: 36px; width: 132px; height: 132px; box-sizing: border-box; border-radius: 50%; background: #FFD23F; border: 8px solid #F4F2EC; transform: rotate(-9deg); object-fit: cover; box-shadow: 0 10px 0 rgba(0,0,0,0.35)" onerror="this.remove()">
+<img src="screenshot.png" alt="The Ratcatcher app" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block" onerror="this.remove()">
+<div style="position: absolute; top: 12px; left: 50%; width: 12px; height: 12px; margin-left: -6px; border-radius: 50%; background: #000000"></div>
+</div>
+<div style="position: absolute; right: 4%; bottom: 36px; width: 132px; height: 132px; box-sizing: border-box; border-radius: 50%; background: #FFD23F; border: 8px solid #F4F2EC; transform: rotate(-9deg); overflow: hidden; box-shadow: 0 10px 0 rgba(0,0,0,0.35)">
+<img src="rat.png" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block" onerror="this.remove()">
+</div>
 </div>
 </section>
 
