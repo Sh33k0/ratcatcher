@@ -29,6 +29,8 @@ a{color:#FFD23F}a:hover{color:#FFE27A}
     icon.png        the app icon (square)
     screenshot.png  a tall screenshot of the app, shown inside the phone
     rat.png         a square rat drawing, shown as a round sticker
+    rats/rat_0001.png ... one square drawing per rat (file name = rat ID, lower case),
+                    shown when someone taps that rat's sticker
 -->
 <div style="background: #15171A; color: #F4F2EC; font-family: 'DM Sans', system-ui, sans-serif; font-size: 17px; line-height: 1.55">
 
@@ -48,7 +50,7 @@ a{color:#FFD23F}a:hover{color:#FFE27A}
 <div style="flex: 1 1 420px; display: flex; flex-direction: column; gap: 24px">
 <div style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.08em; color: #FFD23F">ANDROID / FREE / NO ACCOUNT</div>
 <h1 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(44px, 7vw, 84px); line-height: 0.98; letter-spacing: -0.02em">Rats are hiding in your city.</h1>
-<p style="margin: 0; max-width: 520px; font-size: 20px; color: #D5D8DD">Hand-drawn rat stickers are stuck up in real places. Find one, tap it with your phone, and it joins your collection.</p>
+<p style="margin: 0; max-width: 520px; font-size: 20px; color: #D5D8DD">Hey! I'm Sheeko, an artist and game developer. My aim with this project is to leave a lasting footprint in the places I travel to, in the form of RATS! Tap your phone to one of them and start collecting them around the world!</p>
 <div style="display: flex; flex-wrap: wrap; gap: 12px">
 <a href="https://github.com/Sh33k0/ratcatcher/releases/latest" style="display: inline-flex; align-items: center; gap: 10px; min-height: 56px; padding: 0 26px; border-radius: 14px; background: #FFD23F; color: #15171A; font-weight: 700; font-size: 18px; text-decoration: none">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"></path><path d="M7 11l5 5 5-5"></path><path d="M5 20h14"></path></svg>
@@ -76,12 +78,23 @@ a{color:#FFD23F}a:hover{color:#FFE27A}
 </div>
 </section>
 
-<section id="tapped" style="background: #FFD23F; color: #15171A">
+<section id="tapped" style="background: #40ABFF; color: #15171A">
 <div style="max-width: 1120px; margin: 0 auto; padding: 56px 24px; display: flex; flex-wrap: wrap; align-items: center; gap: 32px">
+<div id="found-rat" style="display: none; flex: 0 0 150px; width: 150px; height: 150px; box-sizing: border-box; border-radius: 50%; background: #F4F2EC; border: 8px solid #15171A; overflow: hidden; transform: rotate(-6deg)">
+<img id="found-rat-img" src="" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block">
+</div>
 <div style="flex: 1 1 420px; display: flex; flex-direction: column; gap: 12px">
 <h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(30px, 4.4vw, 46px); line-height: 1.05" id="tapped-title">Just tapped a sticker?</h2>
-<p style="margin: 0; max-width: 560px; font-size: 19px">You found one of the rats. Install the app, then tap the sticker again to add it to your collection.</p>
-<p style="margin: 0; font-size: 15px">The app is Android only.</p>
+<p style="margin: 0; max-width: 560px; font-size: 19px" id="tapped-text">You found one of the rats. Install the app, then tap the sticker again to add it to your collection.</p>
+<p style="margin: 0; font-size: 15px">The app is Android only, sorry iPhone folks. You can still follow the project on <a href="https://github.com/Sh33k0/ratcatcher">GitHub</a>.</p>
+<details style="font-size: 15px; max-width: 560px">
+<summary style="cursor: pointer; font-weight: 700; min-height: 44px; display: flex; align-items: center">How do I install it?</summary>
+<ol style="margin: 4px 0 0; padding-left: 22px">
+<li>Tap "Get the app", then download the <b>.apk</b> file under Assets.</li>
+<li>Open the downloaded file. If Android asks, allow installs from your browser (one-time setting).</li>
+<li>Open Ratcatcher, then tap the sticker again.</li>
+</ol>
+</details>
 </div>
 <a href="https://github.com/Sh33k0/ratcatcher/releases/latest" style="display: inline-flex; align-items: center; min-height: 56px; padding: 0 26px; border-radius: 14px; background: #15171A; color: #F4F2EC; font-weight: 700; font-size: 18px; text-decoration: none">Get the app</a>
 </div>
@@ -145,13 +158,13 @@ a{color:#FFD23F}a:hover{color:#FFE27A}
 
 <div style="flex: 1 1 280px; box-sizing: border-box; padding: 28px; border-radius: 18px; border: 2px solid #32363D; display: flex; align-items: center; gap: 20px">
 <div style="display: flex; flex-direction: column; gap: 4px">
-<div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 26px">Paris</div>
+<div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 26px">London</div>
 </div>
 </div>
 
 <div style="flex: 1 1 280px; box-sizing: border-box; padding: 28px; border-radius: 18px; border: 2px solid #32363D; display: flex; align-items: center; gap: 20px">
 <div style="display: flex; flex-direction: column; gap: 4px">
-<div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 26px">New York</div>
+<div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 26px">???</div>
 </div>
 </div>
 
@@ -160,7 +173,7 @@ a{color:#FFD23F}a:hover{color:#FFE27A}
 
 <footer style="border-top: 2px solid #32363D">
 <div style="max-width: 1120px; margin: 0 auto; padding: 32px 24px 48px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
-<div style="color: #B4B9C1; font-size: 15px">A personal project. Free forever.</div>
+<div style="color: #B4B9C1; font-size: 15px">Drawn, stuck up and built by Sheeko. Free forever.</div>
 <div style="display: flex; flex-wrap: wrap; gap: 8px">
 <a href="https://github.com/Sh33k0/ratcatcher/releases" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 12px; font-weight: 500">All releases</a>
 <a href="https://github.com/Sh33k0/ratcatcher/issues" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 12px; font-weight: 500">Report a missing sticker</a>
@@ -172,21 +185,50 @@ a{color:#FFD23F}a:hover{color:#FFE27A}
 </div>
 <script>
 // Arrived by tapping a sticker (the link has ?r=rat_0001 in it)? Then the
-// "you found one" message goes to the very top, before everything else.
+// "you found one" message goes to the very top, before everything else, and
+// shows the rat if its picture and name are available.
 (function () {
   var ratId = new URLSearchParams(window.location.search).get('r');
   if (!ratId) return;
+  ratId = ratId.toLowerCase();
   var band = document.getElementById('tapped');
   var title = document.getElementById('tapped-title');
   if (!band || !title) return;
   title.textContent = 'You found a rat!';
   band.parentNode.insertBefore(band, band.parentNode.firstChild);
 
+  // Only plain ids like rat_0001 are used to build file names and lookups.
+  if (/^[a-z0-9_]{1,40}$/.test(ratId)) {
+    // Picture: rats/rat_0001.png next to this file. Shown only if it exists.
+    var box = document.getElementById('found-rat');
+    var img = document.getElementById('found-rat-img');
+    if (box && img) {
+      img.onload = function () { box.style.display = 'block'; };
+      img.src = 'rats/' + ratId + '.png';
+    }
+    // Name: from the same rat list the app uses (only displayName is read).
+    // If this fails or the rat is not in the list, the page still works.
+    try {
+      fetch('https://gist.githubusercontent.com/Sh33k0/5bdde61c3da025ebcbca07f228beba3b/raw/rats_manifest.json')
+        .then(function (r) { return r.json(); })
+        .then(function (m) {
+          var rats = (m && m.rats) || [];
+          for (var i = 0; i < rats.length; i++) {
+            if (String(rats[i].id).toLowerCase() === ratId && rats[i].displayName) {
+              title.textContent = 'You found ' + rats[i].displayName + '!';
+              break;
+            }
+          }
+        })
+        .catch(function () {});
+    } catch (e) {}
+  }
+
   // Count the tap (anonymously: only "this rat's sticker was tapped" is
   // sent). Once per rat per phone, remembered in this browser, so reloading
   // the page doesn't count again. If anything here fails the page still works.
   var COUNTER = 'https://ratcatcher-counter.steamrivet.workers.dev';
-  var key = 'ratcatcher-tapped-' + ratId.toLowerCase();
+  var key = 'ratcatcher-tapped-' + ratId;
   try {
     if (window.localStorage.getItem(key)) return;
   } catch (e) { /* no storage (private mode): count anyway */ }
