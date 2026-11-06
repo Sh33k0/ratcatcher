@@ -29,7 +29,7 @@ a{color:#FFD23F}a:hover{color:#FFE27A}
     icon.png        the app icon (square)
     screenshot.png  a tall screenshot of the app, shown inside the phone
     rat.png         a square rat drawing, shown as a round sticker
-    rats/rat_0001.png ... one square drawing per rat (file name = rat ID, lower case),
+    Rat Sticker_0001_Cutout.png ... one drawing per rat (number = the rat ID's number),
                     shown when someone taps that rat's sticker
 -->
 <div style="background: #15171A; color: #F4F2EC; font-family: 'DM Sans', system-ui, sans-serif; font-size: 17px; line-height: 1.55">
@@ -207,7 +207,9 @@ a{color:#FFD23F}a:hover{color:#FFE27A}
     var img = document.getElementById('found-rat-img');
     if (box && img) {
       img.onload = function () { box.style.display = 'block'; };
-      img.src = 'rats/' + ratId + '.png';
+      // The sticker art is uploaded as "Rat Sticker_0001_Cutout.png" (repo root).
+      var num = /^rat_(\d+)$/.exec(ratId);
+      img.src = num ? 'Rat%20Sticker_' + num[1] + '_Cutout.png' : 'rats/' + ratId + '.png';
     }
     // Name: from the same rat list the app uses (only displayName is read).
     // If this fails or the rat is not in the list, the page still works.
